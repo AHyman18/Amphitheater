@@ -9,3 +9,4 @@ INSERT INTO users
   (username, password)
 VALUES
   ('nathan', 'password123');
+  
