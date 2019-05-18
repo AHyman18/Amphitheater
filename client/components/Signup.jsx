@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Homepage from './Homepage';
 
-class Login extends Component {
+class Signup extends Component {
   constructor() {
     super();
     this.state = {
       username: '',
       password: '',
-      userValidated: false,
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -15,26 +13,25 @@ class Login extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const { username, password, userValidated } = this.state;
+    const { username, password } = this.state;
     const data = {
-      username,
-      password,
+      username: username,
+      password: password,
     };
-    this.setState({ userValidated: true });
-    // On submit of the form, send a POST request with the data to the database/server.
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(function(response) {
-    //     return JSON.stringify(response);
-    //   })
-    //   .then(function(body) {
-    //     // Check if body is verified in the database and then route person to Profile page.
-    //   });
+    //change server route to signup instead of signin
+    fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(function(response) {
+        return JSON.stringify(response);
+      })
+      .then(function(body) {
+        console.log(body);
+      });
   }
 
   handleChange(event) {
@@ -43,13 +40,10 @@ class Login extends Component {
       [name]: value,
     });
   }
-
   render() {
-    let homepage;
-    if (this.state.userValidated) homepage = <Homepage />;
     return (
       <div>
-        <h2>Please enter your username and password below</h2>
+        <h2>Welcome new user, please enter your username and password below</h2>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
@@ -67,10 +61,9 @@ class Login extends Component {
           />
           <input type="submit" />
         </form>
-        {homepage}
       </div>
     );
   }
 }
 
-export default Login;
+export default Signup;
