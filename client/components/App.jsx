@@ -1,13 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Login from './Login.jsx'
-import Signin from './Signin.jsx'
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Login from './Login.jsx';
+import Signin from './Signin.jsx';
 
 function Home() {
   return (
     <div>
       <h2>Welcome to Amphitheater.</h2>
-      <p>The app is designed to get fitness instructors and their trainees together in one space.</p>
+      <p>
+        The app is designed to get fitness instructors and their trainees
+        together in one space.
+      </p>
     </div>
   );
 }
