@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './Login.jsx';
-import Signin from './Signin.jsx';
+import Signup from './Signup.jsx';
 
 function Home() {
   return (
@@ -28,13 +28,13 @@ function AppRouter() {
               <Link to="/login/">Login</Link>
             </li>
             <li>
-              <Link to="/signin/">Signin</Link>
+              <Link to="/signup/">Signup</Link>
             </li>
           </ul>
         </nav>
         <Route path="/" exact component={Home} />
         <Route path="/login/" component={Login} />
-        <Route path="/signin/" component={Signin} />
+        <Route path="/signin/" component={Signup} />
       </div>
     </Router>
   );
