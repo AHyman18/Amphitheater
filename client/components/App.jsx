@@ -34,7 +34,7 @@ function AppRouter() {
         </nav>
         <Route path="/" exact component={Home} />
         <Route path="/login/" component={Login} />
-        <Route path="/signin/" component={Signup} />
+        <Route path="/signup/" component={Signup} />
       </div>
     </Router>
   );
