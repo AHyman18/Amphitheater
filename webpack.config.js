@@ -32,10 +32,10 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, '/public'),
     port: 8080,
-    proxy: {
-      '/': 'http://localhost:3000',
-    },
-    publicPath: 'http://localhost:8080/build/',
+    // proxy: {
+    //   '/': 'http://localhost:3000',
+    // },
+    publicPath: '/build',
     hot: true,
     historyApiFallback: true,
   },
