@@ -22,19 +22,19 @@ class Login extends Component {
     };
     this.setState({ userValidated: true });
     // On submit of the form, send a POST request with the data to the database/server.
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(function(response) {
-    //     return JSON.stringify(response);
-    //   })
-    //   .then(function(body) {
-    //     // Check if body is verified in the database and then route person to Profile page.
-    //   });
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(function(response) {
+        return JSON.stringify(response);
+      })
+      .then(function(body) {
+        // Check if body is verified in the database and then route person to Profile page.
+      });
   }
 
   handleChange(event) {
@@ -45,30 +45,29 @@ class Login extends Component {
   }
 
   render() {
-    // let HomePage;
-    // if (this.state.userValidated) homepage = <Homepage />;
+    let Homepage;
+    if (this.state.userValidated) Homepage = <HomePage />;
     return (
       <div>
-        <HomePage />
-        {/* </div><h2>Please enter your username and password below</h2>
-      //   <form onSubmit={this.onSubmit}>
-      //     <input
-      //       type="text"
-      //       name="username"
-      //       value={this.state.firstname}
-      //       placeholder="Username"
-      //       onChange={this.handleChange}
-      //     />
-      //     <input
-      //       type="text"
-      //       name="password"
-      //       value={this.state.lastname}
-      //       placeholder="Password"
-      //       onChange={this.handleChange}
-      //     />
-      //     <input type="submit" />
-      //   </form>
-        // {homepage} */}
+        <h2>Please enter your username and password below</h2>
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            name="username"
+            value={this.state.firstname}
+            placeholder="Username"
+            onChange={this.handleChange}
+          />
+          <input
+            type="text"
+            name="password"
+            value={this.state.lastname}
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <input type="submit" />
+        </form>
+        {Homepage}
       </div>
     );
   }
