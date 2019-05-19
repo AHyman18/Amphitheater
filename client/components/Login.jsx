@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Homepage from './Homepage';
+import HomePage from './Homepage';
 
 class Login extends Component {
   constructor() {
@@ -22,19 +22,19 @@ class Login extends Component {
     };
     this.setState({ userValidated: true });
     // On submit of the form, send a POST request with the data to the database/server.
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(function(response) {
-    //     return JSON.stringify(response);
-    //   })
-    //   .then(function(body) {
-    //     // Check if body is verified in the database and then route person to Profile page.
-    //   });
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(function(response) {
+        return JSON.stringify(response);
+      })
+      .then(function(body) {
+        // Check if body is verified in the database and then route person to Profile page.
+      });
   }
 
   handleChange(event) {
@@ -45,8 +45,8 @@ class Login extends Component {
   }
 
   render() {
-    let homepage;
-    if (this.state.userValidated) homepage = <Homepage />;
+    let Homepage;
+    if (this.state.userValidated) Homepage = <HomePage />;
     return (
       <div>
         <h2>Please enter your username and password below</h2>
@@ -67,7 +67,7 @@ class Login extends Component {
           />
           <input type="submit" />
         </form>
-        {homepage}
+        {Homepage}
       </div>
     );
   }

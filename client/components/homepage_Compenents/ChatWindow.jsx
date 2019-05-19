@@ -2,16 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import Message from './Messages';
 
-const MessageView = () => {
-  const ChatWindow = styled.section`
+const ChatWindow = () => {
+  const ChatWindowStyled = styled.section`
     background-color: red;
+    border: 2px solid black;
+    width: 100%;
+    grid-area: chat;
   `;
+
   return (
-    <ChatWindow>
-      <div>I am the chatWindow</div>
+    <ChatWindowStyled>
+      <div>I am the ChatWindowStyled</div>
       <Message />
-    </ChatWindow>
+      {/* this is where the message input button goes */}
+    </ChatWindowStyled>
   );
 };
 
-export default MessageView;
+export default ChatWindow;

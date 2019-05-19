@@ -15,10 +15,10 @@ class Signup extends Component {
     e.preventDefault();
     const { username, password } = this.state;
     const data = {
-      username: username,
-      password: password,
+      username,
+      password,
     };
-    //change server route to signup instead of signin
+    // change server route to signup instead of signin
     fetch('http://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -40,6 +40,7 @@ class Signup extends Component {
       [name]: value,
     });
   }
+
   render() {
     return (
       <div>
