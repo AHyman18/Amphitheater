@@ -58,6 +58,7 @@ const Nav = styled.nav`
   }
   nav {
     background-color: #444;
+    grid-area: nav;
   }
   */
   }

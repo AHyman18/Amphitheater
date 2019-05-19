@@ -8,6 +8,7 @@ export default () => {
     border: 2px solid black;
     width: 30%;
     height: 200px;
+    grid-area: chat;
   `;
   return (
     <ChatWindow>
