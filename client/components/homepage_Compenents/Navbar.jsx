@@ -3,15 +3,32 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
   ol {
+    display: flex;
     list-style: none;
     background-color: #444;
     text-align: center;
     padding: 0;
     margin: 0;
   }
+  li {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: 0.3s background-color;
+  }
+
+  li :hover {
+    background-color: #005f5f;
+  }
+
+  li.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+  }
   grid-area: nav;
 `;
-// grid-column: 1/-1;
+
 //
 // ol {
 //   list-style: none;
@@ -77,9 +94,15 @@ const Navbar = () => {
   return (
     <Nav>
       <ol>
-        <li>profile</li>
-        <li>chat</li>
-        <li>setting</li>
+        <li>
+          <button>profile</button>
+        </li>
+        <li>
+          <button>chat</button>
+        </li>
+        <li>
+          <button>setting</button>
+        </li>
       </ol>
     </Nav>
   );

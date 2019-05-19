@@ -9,11 +9,7 @@ const ChatWindow = () => {
     width: 100%;
     grid-area: chat;
   `;
-  // grid-column: 1/2;
-  // grid-row: 2/6;
-  //
-  // height: 200px;
-  // grid-area: chat;
+
   return (
     <ChatWindowStyled>
       <div>I am the ChatWindowStyled</div>
