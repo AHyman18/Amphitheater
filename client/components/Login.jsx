@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Homepage from './Homepage';
+import HomePage from './Homepage';
 
 class Login extends Component {
   constructor() {
@@ -45,29 +45,30 @@ class Login extends Component {
   }
 
   render() {
-    let homepage;
-    if (this.state.userValidated) homepage = <Homepage />;
+    // let HomePage;
+    // if (this.state.userValidated) homepage = <Homepage />;
     return (
       <div>
-        <h2>Please enter your username and password below</h2>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.firstname}
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="password"
-            value={this.state.lastname}
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-        {homepage}
+        <HomePage />
+        {/* </div><h2>Please enter your username and password below</h2>
+      //   <form onSubmit={this.onSubmit}>
+      //     <input
+      //       type="text"
+      //       name="username"
+      //       value={this.state.firstname}
+      //       placeholder="Username"
+      //       onChange={this.handleChange}
+      //     />
+      //     <input
+      //       type="text"
+      //       name="password"
+      //       value={this.state.lastname}
+      //       placeholder="Password"
+      //       onChange={this.handleChange}
+      //     />
+      //     <input type="submit" />
+      //   </form>
+        // {homepage} */}
       </div>
     );
   }
