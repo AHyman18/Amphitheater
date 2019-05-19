@@ -26,6 +26,10 @@ app.post('/login', (req, res) => {
   console.log(req.body);
   return res.json(req.body);
 });
+// this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html
+app.get('*', (req, res) => {
+  return res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 app.listen(3000);
 module.exports = app;
