@@ -1,69 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Signup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-    };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+export default function Signup () {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleNameChange(event) {
+    setName(event.target.value);
   }
-
-  onSubmit(e) {
-    e.preventDefault();
-    const { username, password } = this.state;
-    const data = {
-      username: username,
-      password: password,
-    };
-    //change server route to signup instead of signin
-    fetch('http://localhost:3000/signup', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(function(response) {
-        return JSON.stringify(response);
-      })
-      .then(function(body) {
-        console.log(body);
-      });
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
   }
 
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+  function changeHiddenStatus(){ 
+      
+        // const data = {
+        //   name,
+        //   password,
+        // };
+        // On submit of the form, send a POST request with the data to the database/server.
+        // fetch('http://localhost:3000/signup', {
+        //   method: 'POST',
+        //   body: JSON.stringify(data),
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        // })
+        //   .then(function(response) {
+        //     return JSON.stringify(response);
+        //   })
+        //   .then(function(body) {
+        //     // Check if body is verified in the database and then route person to Profile page.
+        //   });
   }
-  render() {
-    return (
-      <div>
-        <h2>Welcome new user, please enter your username and password below</h2>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.firstname}
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="password"
-            value={this.state.lastname}
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </div>
-    );
-  }
+
+  return (
+    <div>
+      <h2>Welcome new user, please enter your username and password below</h2>
+      <form>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          name="password"
+          placeholder="Password"
+          onChange={handlePasswordChange}
+        />
+        <input type="submit" />
+      </form>
+    </div>
+  )
 }
-
-export default Signup;
