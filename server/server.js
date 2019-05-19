@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const db = require('./database/database');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,15 +15,14 @@ app.get('/', (req, res) => {
 });
 
 // insert dbController middleware Create/hash/insert, next
-app.post('/signup', (req, res) => {
-  console.log(req.body);
+app.post('/signup', db.createUser, (req, res) => {
   //   boolean val--has been signed up
 });
 
 // insert dbController middleware find, validate, next
-app.post('/login', (req, res) => {
+app.post('/login', db.getUser, (req, res) => {
   //   send back the username  to front end
-  console.log(req.body);
+  console.log('IM IN THE NEXTTTT', req.body);
 });
 
 app.listen(3000);
