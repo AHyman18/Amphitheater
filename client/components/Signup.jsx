@@ -4,6 +4,7 @@ export default function Signup () {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
+  
   function handleNameChange(event) {
     setName(event.target.value);
   }

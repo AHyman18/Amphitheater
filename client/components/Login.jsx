@@ -14,7 +14,7 @@ export default function Login() {
     setPassword(event.target.value);
   }
 
-  function changeHiddenStatus(){
+  function changeHiddenStatus(e){
     e.preventDefault()
     setHidden(false);   
    

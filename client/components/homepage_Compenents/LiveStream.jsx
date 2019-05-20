@@ -1,32 +1,31 @@
-import React from 'react';
+import React from 'react'
 
-const LiveStream = () => {
-  let vision = <video autoplay = "true"></video>;
+// const LivStreamStyled = styled.section`
+// ;
+// `;
+
+class LiveStream extends React.Component {
+  constructor(props) {
+      super(props);
+      this.videoTag = React.createRef()
+  }
  
-  if (navigator.mediaDevices.getUserMedia) {       
-      navigator.mediaDevices.getUserMedia({
-        video: {
-          width: { min: 1280 },
-          height: { min: 720 }
-        }, 
-        audio: true})
-    .then(function(stream) {
-      video.srcObject = stream;
-    })
-    .catch(function(error) {
-      console.log("Something went wrong!");
-    })
+  componentDidMount() {
+     navigator.mediaDevices
+          .getUserMedia({video: true, audio: true})
+          .then(incoming => this.videoTag.current.srcObject = incoming)
+          .catch(console.log('SOMETHING IS WRONG'));
   }
 
-  return (
-    <div>
-      <div id="container">
-      {vision}
-      </div>
-    <center style={{fontSize:40+'px'}}>
-    </center>
-    </div>
-  )
-};
+  render() {
+      return( 
+        <section id={this.props.id}>
+             <video ref={this.videoTag} width={this.props.width}
+                    height={this.props.height} autoPlay title={this.props.title}>
+              </video>
+        </section>
+      )
+  }
+}
 
 export default LiveStream;
