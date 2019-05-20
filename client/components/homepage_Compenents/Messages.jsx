@@ -2,6 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Message = () => <div>I am the message</div>;
+const Message = ({mssg}) => {
+    return <div>{mssg}</div>
+}
 
 export default Message;
