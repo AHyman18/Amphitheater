@@ -4,9 +4,12 @@ import Message from './Messages';
 
 const ChatWindow = () => {
   const ChatWindowStyled = styled.section`
+    display: flex;
+    flex-direction: reverse-column;
     background-color: white;
     border: 2px solid black;
     width: 100%;
+
     grid-area: chat;
   `;
   const [messages, setMessage] = useState([]);
@@ -21,8 +24,6 @@ const ChatWindow = () => {
 
   return (
     <ChatWindowStyled>
-      <div>dhfjskfd</div>
-      <Message />
       {/* this is where the message input button goes */}
     </ChatWindowStyled>
   );
