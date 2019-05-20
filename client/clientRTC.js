@@ -38,7 +38,7 @@ function init() {
       .then(getUserMediaSuccessFunc)
       .catch(errorHandlerFunc);
   } else {
-    alert('Browser does not supper getUserMediaAPI');
+    alert('Browser does not support getUserMediaAPI');
   }
 }
 

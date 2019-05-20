@@ -8,7 +8,7 @@ const conString =
 
 const query = {
   text: 'INSERT INTO users(username, password) VALUES ($1, $2)',
-  values: [`'${req.body.username}', '${req.body.password}'`]
+  values: [`'${req.body.username}', '${req.body.password}'`],
 };
 
 var client = new pg.Client(conString);
@@ -24,3 +24,5 @@ client.connect(function(err) {
     client.end();
   });
 });
+
+//need to add export
