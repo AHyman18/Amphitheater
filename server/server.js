@@ -49,7 +49,7 @@ app.post('/login', db.getUser, (req, res) => {
 // });
 
 wss.on('connection', function(ws) {
-  ws.on('message', function(message) {
+  ws.on('messa ge', function(message) {
     // Broadcast any received message to all clients
     console.log('received: %s', message);
     wss.broadcast(message);
