@@ -17,11 +17,14 @@ app.get('/', (req, res) => {
 // insert dbController middleware Create/hash/insert, next
 app.post('/signup', db.createUser, (req, res) => {
   //   boolean val--has been signed up
-  return res.json(req.locals.loggedIn);
+  console.log('aaaaaa');
+  console.log(res.locals);
+  return res.json(res.locals.loggedIn);
 });
 
 // insert dbController middleware find, validate, next
 app.post('/login', db.getUser, (req, res) => {
+  console.log('im in the login');
   //   send back the username  to front end
   return res.json(req.body.username);
 });

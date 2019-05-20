@@ -13,16 +13,26 @@ const pool = new Pool({
 // Creates user from username and password form on /signup route. Encrypts password via Bcrypt and stores in database.
 const createUser = (req, res, next) => {
   const { username, password } = req.body;
+  console.log(username, password);
   const saltRounds = 10;
   pool.connect((err, client, done) => {
     if (err) throw err;
     bcrypt.hash(password, saltRounds, (err, hash) => {
+      console.log('IM IN THE HSA FUNCTION');
       if (err) throw err;
       client.query(
         `INSERT INTO users (username, password) VALUES ('${username}', '${hash}')`,
         done(),
       );
     });
+
+    // Create JWT
+    // const createToken = (req, res, next) => {
+    //   // Get auth header value
+    //   const token = jwt.sign({ id: user._id }, config.secret, {
+    //     expiresIn: 86400, // expires in 24 hours
+    //   });
+    // };
     res.locals.loggedIn = true;
     next();
   });
@@ -35,22 +45,22 @@ const getUser = (req, res, next) => {
   pool.connect((err, client, done) => {
     if (err) throw err;
     client.query(
-      `SELECT * FROM users WHERE username = '${req.body.username}'`,
+      `SELECT * FROM users WHERE username = '${username}'`,
       (err, results) => {
         if (err) console.error(err);
         if (results.rows.length < 1 || !password) {
-          return false;
+          return;
         }
         const hash = results.rows[0].password;
         bcrypt.compare(password, hash, (err, allow) => {
           if (err) return err;
-          const loggedInUser = { username };
-          next(null, loggedInUser);
+          console.log('eeeeeee');
           done();
         });
       },
     );
   });
+  next();
 };
 
 // Export middleware.
