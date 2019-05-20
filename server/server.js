@@ -24,8 +24,8 @@ app.post('/signup', db.createUser, (req, res) => {
 
 // insert dbController middleware find, validate, next
 app.post('/login', db.getUser, (req, res) => {
-  console.log('im in the login');
   //   send back the username  to front end
+  console.log('req.body', req.body);
   return res.json(req.body.username);
 });
 // this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html

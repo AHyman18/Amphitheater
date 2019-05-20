@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 // import Homepage from './Homepage';
 
-export default function Login() {
+function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   // first element of arr = the initial value of the state, [1] = update of state
@@ -36,9 +36,10 @@ export default function Login() {
     })
       .then(res => res.json())
       .then(validatedStatus => {
+        console.log('Hello', validatedStatus);
         if (validatedStatus !== validated) setValidated(true);
         else {
-          redirect = <Redirect to="/" />;
+          redirect = <Redirect to="/signup" />;
         }
       })
       .catch(err => console.log('this is and error', err));
@@ -66,3 +67,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
