@@ -6,11 +6,7 @@ export default function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   // first element of arr = the initial value of the state, [1] = update of state
-  const [validated, setValidated] = useState(false);
-  let redirect;
-  useEffect(() => {
-    redirect = <Redirect to="/homepage/" />;
-  }, [validated]);
+  const [validated, setValidated] = useState(null);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -18,6 +14,11 @@ export default function Login() {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
+
+  const handleRedirect = () => {
+    if (validated) return <Redirect to="/homepage/" />;
+    if (validated === false) return <Redirect to="/signup" />;
+  };
 
   function checkUser(e) {
     e.preventDefault();
@@ -27,6 +28,7 @@ export default function Login() {
       password,
     };
     // On submit of the form, send a POST request with the data to the database/server.
+
     fetch('http://localhost:3000/login', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -36,9 +38,11 @@ export default function Login() {
     })
       .then(res => res.json())
       .then(validatedStatus => {
-        if (validatedStatus !== validated) setValidated(true);
-        else {
-          redirect = <Redirect to="/" />;
+        console.log(validatedStatus);
+        if (validatedStatus) {
+          setValidated(true);
+        } else {
+          setValidated(false);
         }
       })
       .catch(err => console.log('this is and error', err));
@@ -62,7 +66,7 @@ export default function Login() {
         />
         <input type="submit" />
       </form>
-      {redirect}
+      {handleRedirect()}
     </div>
   );
 }
