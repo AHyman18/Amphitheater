@@ -1,19 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './Login.jsx';
-import Signup from './Signup.jsx';
-
-function Home() {
-  return (
-    <div>
-      <h2>Welcome to Amphitheater.</h2>
-      <p>
-        The app is designed to get fitness instructors and their trainees
-        together in one space.
-      </p>
-    </div>
-  );
-}
+import WelcomePage from './WelcomePage';
+// import Signup from './Signup.jsx';
+import HomePage from './Homepage';
 
 function AppRouter() {
   return (
@@ -22,19 +12,23 @@ function AppRouter() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Welcome</Link>
             </li>
             <li>
               <Link to="/login/">Login</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/signup/">Signup</Link>
+            </li> */}
+            <li>
+              <Link to="/homepage/">homepage</Link>
             </li>
           </ul>
         </nav>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={WelcomePage} />
         <Route path="/login/" component={Login} />
-        <Route path="/signup/" component={Signup} />
+        {/* <Route path="/signup/" component={Signup} /> */}
+        <Route path="/homepage/" component={HomePage} />
       </div>
     </Router>
   );
