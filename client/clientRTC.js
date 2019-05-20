@@ -1,5 +1,4 @@
 // this file essential grabs the dom video elements, establishes a secure websocket channel, and uses the RTCPeerConnection API and stun/turn servers to handle incoming and outgoing calls. Once streams are acquired, the streams are sent to their corresponding divs
-
 // const uuidGenerate = require('uuid/v4');
 //   generate a unique identifier to identify computer
 // const uuid = uuidGenerate();
@@ -7,23 +6,19 @@ const uuid = createUUID();
 let serverConnection;
 let peerConnection;
 let localStream;
-
 // ice servers find the best path toconnect peers using either stun or turn servers
 const peerConnectionConfigs = {
   server: null,
 };
-
 // on page ready:
 function init() {
   console.log('init');
-
   //   use websocket api to open a two-way interactive communication session between the client and a server
   //   wss urls protected aainst "man-in-the middle "sniffing" or modification"
   serverConnection = new WebSocket('ws://localhost:3009');
   console.log(serverConnection);
   //   an event listener called when a message is retrieved from the server =>
   serverConnection.onMessage = retrievedMessageFunc;
-
   const constraints = {
     video: true,
     audio: true,
@@ -37,23 +32,19 @@ function init() {
     alert('Browser does not support getUserMediaAPI');
   }
 }
-
 // helperFuncs
 function getUserMediaSuccessFunc(stream) {
   console.log('getUserMediaSuccessFunc');
   let localVideo = document.querySelector('#localVideo');
-
   console.log(localVideo);
   localStream = stream;
   localVideo.srcObject = stream;
 }
-
 function gotRemoteStreamFunc(event) {
   console.log('got remote stream');
   let remoteVideo = document.querySelector('#remoteVideo');
   remoteVideo.srcObject = event.streams[0];
 }
-
 function startCall(isCaller) {
   console.log('startcaller');
   //   parameter isCaller is a boolean value
@@ -67,18 +58,15 @@ function startCall(isCaller) {
   peerConnection.ontrack = gotRemoteStreamFunc;
   console.log('below on track');
   peerConnection.addStream(localStream);
-
   if (isCaller) {
     // The createOffer() method of the RTCPeerConnection interface initiates the creation of an SDP offer for the purpose of starting a new WebRTC connection to a remote peer. The SDP offer includes information about any MediaStreamTracks already attached to the WebRTC session, codec, and options supported by the browser, and any candidates already gathered by the ICE agent, for the purpose of being sent over the signaling channel to a potential peer to request a connection or to update the configuration of an existing connection.
     // The return value is a Promise which, when the offer has been created, is resolved with a RTCSessionDescription object containing the newly-created offer.
-    console.log('creating offer');
     peerConnection
       .createOffer()
       .then(createdDescriptionFunc)
       .catch(errorHandlerFunc);
   }
 }
-
 function retrievedMessageFunc(messageEvent) {
   console.log('retrieved message func');
   //   if the peer connection does not exist then start the call =>
@@ -120,7 +108,6 @@ function iceCandidateRetrievedFunc(event) {
     serverConnection.send(JSON.stringify({ ice: event.candidate, uuid: uuid }));
   }
 }
-
 function createdDescriptionFunc(description, server) {
   console.log('retrieved d esription--created description');
   peerConnection.setLocalDescription(description).then(function() {
@@ -133,11 +120,9 @@ function createdDescriptionFunc(description, server) {
   });
   // .catch(errorHandlerFunc);
 }
-
 function errorHandlerFunc() {
   console.log('error');
 }
-
 function createUUID() {
   console.log('uuid');
   function s4() {
@@ -145,7 +130,6 @@ function createUUID() {
       .toString(16)
       .substring(1);
   }
-
   return (
     s4() +
     s4() +
