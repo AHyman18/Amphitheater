@@ -22,7 +22,12 @@ const createUser = (req, res, next) => {
       if (err) throw err;
       client.query(
         `INSERT INTO users (username, password) VALUES ('${username}', '${hash}')`,
-        done(),
+        (err, user) => {
+          if (err) {
+            console.error(err);
+            res.status(404).json({ loggedIn: false, username: user });
+          }
+        },
       );
     });
 

@@ -4,6 +4,7 @@ import Navbar from './homepage_Compenents/Navbar';
 import ChatWindow from './homepage_Compenents/ChatWindow';
 import LiveStream from './homepage_Compenents/LiveStream';
 import MessageInput from './homepage_Compenents/Msginput';
+import Msginput from './homepage_Compenents/Msginput';
 
 const Homepage = styled.div`
   display: grid;
@@ -43,19 +44,40 @@ class HomePage extends Component {
       id: ['friend', 'you'],
       width: ['250', '200'],
       content: '',
+      fin: '',
+      mssgList: [],
     };
+    this.handleMsgSubmit = this.handleMsgSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    this.setState({
+      content: event.target.value,
+    });
+    console.log(this.state.content);
+  }
+
+  handleMsgSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.content);
+    const newState = Object.assign({}, this.state);
+    newState.mssgList.push(this.state.content);
+    this.setState(newState);
   }
 
   render() {
     const liveStream = this.state.id.map((vid, idx) => {
       return <LiveStream key={idx} id={vid} width={this.state.width[idx]} />;
     });
-
     return (
       <Homepage>
         <Navbar />
-        <ChatWindow />
-        <MessageInput />
+        <ChatWindow info={this.state.mssgList} />
+        <MessageInput
+          onSubmit={this.handleMsgSubmit}
+          onChange={this.handleInputChange}
+        />
         {liveStream}
       </Homepage>
     );
