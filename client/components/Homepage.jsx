@@ -45,12 +45,12 @@ class HomePage extends Component {
       content: '',
     };
   }
-  handleChange(e){
-    const nav
-  }
-  handleMsgSubmit(e){
-    const 
-  }
+  // handleChange(e){
+  //   const nav
+  // }
+  // handleMsgSubmit(e){
+  //   const
+  // }
 
   render() {
     const liveStream = this.state.id.map((vid, idx) => {

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import Homepage from './Homepage';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+// import Homepage from './Homepage';
 
 export default function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   // first element of arr = the initial value of the state, [1] = update of state
-  const [hidden, setHidden] = useState(true);
+  const [validated, setValidated] = useState(false);
+  let redirect;
+  useEffect(() => {
+    redirect = <Redirect to="/homepage/" />;
+  }, [validated]);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -14,39 +19,35 @@ export default function Login() {
     setPassword(event.target.value);
   }
 
-  function changeHiddenStatus(e) {
+  function checkUser(e) {
     e.preventDefault();
-    setHidden(false);
 
-    // const data = {
-    //   name,
-    //   password,
-    // };
+    const data = {
+      name,
+      password,
+    };
     // On submit of the form, send a POST request with the data to the database/server.
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(function(response) {
-    //     return JSON.stringify(response);
-    //   })
-    //   .then(function(body) {
-    //     // Check if body is verified in the database and then route person to Profile page.
-    //   });
-  }
-
-  let homepage = null;
-  if (!hidden) {
-    homepage = <Homepage />;
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(validatedStatus => {
+        if (validatedStatus !== validated) setValidated(true);
+        else {
+          redirect = <Redirect to="/" />;
+        }
+      })
+      .catch(err => console.log('this is and error', err));
   }
 
   return (
     <div>
       <h2>Please enter your username and password below</h2>
-      <form onSubmit={changeHiddenStatus}>
+      <form onSubmit={checkUser}>
         <input
           type="text"
           name="username"
@@ -61,7 +62,7 @@ export default function Login() {
         />
         <input type="submit" />
       </form>
-      {homepage}
+      {redirect}
     </div>
   );
 }
