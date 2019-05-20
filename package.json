@@ -27,7 +27,9 @@
     "react-hot-loader": "^4.8.4",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.2.0",
-    "webpack": "^4.31.0"
+    "uuid": "^3.3.2",
+    "webpack": "^4.31.0",
+    "ws": "^7.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
+    <meta charset="utf-8" />
+    <title>Amphitheater</title>
 
-<head>
-  <meta charset="utf-8" />
-  <title>Amphitheater</title>
-</head>
-
-<body>
-  <div id="app"></div>
-  <!-- <script src="./components/app"></script> -->
-  <script src="../build/build.js"></script>
-</body>
-
+    <script src="clientRTC.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <video id="localVideo" autoplay muted style="width:40%"></video>
+    <video id="remoteVideo" autoplay style="width:40%;"></video>
+    <br />
+    <input
+      type="button"
+      id="start"
+      onclick="startCall(true)"
+      value="Start Video"
+    />
+    <!-- <script src="./components/app"></script> -->
+    <script src="../build/build.js"></script>
+    <script type="text/javascript">
+      init();
+    </script>
+  </body>
 </html>
