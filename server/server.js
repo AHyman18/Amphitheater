@@ -10,11 +10,7 @@ const ws = new WebSocketServer({ port: 3009 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/build', express.static(path.join(__dirname, '../build/')));
-// //cert files
-// const serverConfig = {
-//   key: fs.readFileSync('key.pem'),
-//   cert: fs.readFileSync('cert.pem'),
-// };
+
 // create a post request that handles the sign in information
 app.get('/', (req, res) => {
   console.log('serving index html');
@@ -35,7 +31,7 @@ app.post('/signup', db.createUser, (req, res) => {
 app.post('/login', db.getUser, (req, res) => {
   console.log('im in the login');
   //   send back the username  to front end
-  return res.json(req.body.username);
+  return res.json({});
 });
 // this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html
 // app.get('*', (req, res) => {

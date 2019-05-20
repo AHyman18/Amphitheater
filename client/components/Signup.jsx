@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default function Signup() {
   const [username, setName] = useState('');
   const [password, setPassword] = useState('');
+
+  const [validated, setValidated] = useState(null);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -10,27 +13,33 @@ export default function Signup() {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-
+  const handleRedirect = () => {
+    if (validated) return <Redirect to="/homepage/" />;
+    if (validated === false) return <Redirect to="/" />;
+  };
   function submitCredentials(e) {
     e.preventDefault();
     const data = {
       username,
       password,
     };
-    console.log('IM DATA', data);
-    // On submit of the form, send a POST request with the data to the database/server.
     fetch('http://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(function(response) {
-      return JSON.stringify(response);
-    });
-    // .then(function(body) {
-    //   // Check if body is verified in the database and then route person to Profile page.
-    // });
+    })
+      .then(res => res.json())
+      .then(validatedStatus => {
+        console.log(' this is the response', validatedStatus);
+        if (validatedStatus) {
+          setValidated(true);
+        } else {
+          setValidated(false);
+        }
+      })
+      .catch(err => console.log('this is and error', err));
   }
 
   return (
@@ -51,6 +60,7 @@ export default function Signup() {
         />
         <input type="submit" />
       </form>
+      {handleRedirect()}
     </div>
   );
 }
