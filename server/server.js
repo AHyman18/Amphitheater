@@ -2,21 +2,21 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const WebSocket = require('ws');
-const WebSocketServer = WebSocket.Server;
+const WebSocketServer = require('ws').Server;
 const bodyParser = require('body-parser');
 const db = require('./database/database');
 
 const app = express();
-const wss = new WebSocketServer({ server: app });
+const ws = new WebSocketServer({ port: 3009 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/build', express.static(path.join(__dirname, '../build/')));
 
-//cert files
-const serverConfig = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-};
+// //cert files
+// const serverConfig = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem'),
+// };
 
 // create a post request that handles the sign in information
 app.get('/', (req, res) => {
@@ -48,15 +48,16 @@ app.post('/login', db.getUser, (req, res) => {
 //   return res.sendFile(path.join(__dirname, '../public/index.html'));
 // });
 
-wss.on('connection', function(ws) {
+ws.on('connection', function(ws) {
+  console.log('connect wss');
   ws.on('messa ge', function(message) {
     // Broadcast any received message to all clients
     console.log('received: %s', message);
-    wss.broadcast(message);
+    ws.broadcast(message);
   });
 });
 
-wss.broadcast = function(data) {
+ws.broadcast = function(data) {
   this.clients.forEach(function(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(data);
