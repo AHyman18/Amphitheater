@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const messageInput = styled.div`
+const MessageInput = styled.div`
   display: flex;
   flex-direction: reverse-column;
   grid-area: chI;
 `;
-function Msginput() {
-  return (
-    <messageInput>
-      <input
-        type="text"
-        name="msgContent"
-        // value={this.props.content}
-        placeholder="What's on your mind?"
-        // onChange={this.handleChange}
-      />
-      <button id="msgSubmit" type="submit" onClick>
-        submit
-      </button>
-    </messageInput>
-  );
+
+class Msginput extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+      <MessageInput>
+        <form onSubmit={this.props.onSubmit}>
+          <input
+            type="text"
+            name="msgContent"
+            placeholder="What's on your mind?"
+            onChange={this.props.onChange}
+          />
+          <input type="submit"/>            
+        </form>  
+      </MessageInput>
+    );
+  }
 }
 
 export default Msginput;
