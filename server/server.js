@@ -4,7 +4,7 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const WebSocketServer = WebSocket.Server;
 const bodyParser = require('body-parser');
-const PORT = 3000;
+const db = require('./database/database');
 
 const app = express();
 const wss = new WebSocketServer({ server: app });
@@ -30,17 +30,18 @@ app.get('/clientRTC.js', (req, res) => {
 });
 
 // insert dbController middleware Create/hash/insert, next
-app.post('/signup', (req, res) => {
-  console.log(req.body);
+app.post('/signup', db.createUser, (req, res) => {
   //   boolean val--has been signed up
-  return res.json(req.body);
+  console.log('aaaaaa');
+  console.log(res.locals);
+  return res.json(res.locals.loggedIn);
 });
 
 // insert dbController middleware find, validate, next
-app.post('/login', (req, res) => {
+app.post('/login', db.getUser, (req, res) => {
+  console.log('im in the login');
   //   send back the username  to front end
-  console.log(req.body);
-  return res.json(req.body);
+  return res.json(req.body.username);
 });
 // this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html
 // app.get('*', (req, res) => {
@@ -62,5 +63,5 @@ wss.broadcast = function(data) {
     }
   });
 };
-app.listen(PORT);
+app.listen(3000);
 module.exports = app;
