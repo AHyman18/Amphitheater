@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack & nodemon server/server.js ",
+    "start": "nodemon server/server.js & webpack ",
     "build": "webpack ",
-    "dev": " nodemon server/server.js & webpack-dev-server --open",
-    "reactdev": "webpack-dev-server --open"
+    "dev": " nodemon server/server.js & webpack-dev-server ",
+    "reactdev": "webpack-dev-server "
   },
   "keywords": [
     "fitness"

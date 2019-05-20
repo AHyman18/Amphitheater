@@ -30,15 +30,8 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
-    // index: '', this would enable the root to be proxyed but I don't think we need this for the dev server
     contentBase: path.join(__dirname, '/public'),
     port: 8080,
-    proxy: [
-      {
-        context: ['/login', '/signup'],
-        target: 'http:localhost:3000',
-      },
-    ],
     publicPath: '/build',
     hot: true,
     historyApiFallback: true,
