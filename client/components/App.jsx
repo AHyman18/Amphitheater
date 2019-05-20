@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import WelcomePage from './WelcomePage';
-import Signup from './Signup.jsx';
+// import Signup from './Signup.jsx';
 import HomePage from './Homepage';
 
 function AppRouter() {
@@ -17,9 +17,9 @@ function AppRouter() {
             <li>
               <Link to="/login/">Login</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/signup/">Signup</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/homepage/">homepage</Link>
             </li>
@@ -27,7 +27,7 @@ function AppRouter() {
         </nav>
         <Route path="/" exact component={WelcomePage} />
         <Route path="/login/" component={Login} />
-        <Route path="/signup/" component={Signup} />
+        {/* <Route path="/signup/" component={Signup} /> */}
         <Route path="/homepage/" component={HomePage} />
       </div>
     </Router>

@@ -17,6 +17,7 @@ export default function Signup() {
       username,
       password,
     };
+    console.log('IM DATA', data);
     // On submit of the form, send a POST request with the data to the database/server.
     fetch('http://localhost:3000/signup', {
       method: 'POST',

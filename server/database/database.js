@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 // Connects to database
 const pool = new Pool({
