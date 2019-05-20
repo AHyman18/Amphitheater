@@ -109,7 +109,7 @@ function iceCandidateRetrievedFunc(event) {
 }
 
 function createdDescriptionFunc(description) {
-  console.log('retrieved desription');
+  console.log('retrieved d esription');
   peerConnection
     .setLocalDescription(description)
     .then(function() {
