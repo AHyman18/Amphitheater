@@ -8,22 +8,22 @@ const MessageInput = styled.div`
 `;
 
 class Msginput extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <MessageInput>
         <form onSubmit={this.props.onSubmit}>
-          <input
+          <textarea
             type="text"
             name="msgContent"
             placeholder="What's on your mind?"
             onChange={this.props.onChange}
           />
-          <input type="submit"/>            
-        </form>  
+          <input type="submit" />
+        </form>
       </MessageInput>
     );
   }
