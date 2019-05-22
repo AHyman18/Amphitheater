@@ -4,7 +4,7 @@ const fs = require('fs');
 const WebSocket = require('ws');
 const WebSocketServer = require('ws').Server;
 const bodyParser = require('body-parser');
-const db = require('./database/psqlDB.js');
+const dbController = require('./controllers/dbController.js');
 const app = express();
 const ws = new WebSocketServer({ port: 3009 });
 app.use(bodyParser.json());
@@ -26,18 +26,18 @@ app.get('/clientRTC.js', (req, res) => {
 });
 // insert dbController middleware Create/hash/insert, next
 
-// app.post('/signup', db.createUser, (req, res) => {
-//   //   boolean val--has been signed up
-//   console.log('aaaaaa');
-//   console.log(res.locals);
-//   return res.json(res.locals.loggedIn);
-// });
-// // insert dbController middleware find, validate, next
-// app.post('/login', db.getUser, (req, res) => {
-//   console.log('im in the login');
-//   //   send back the username  to front end
-//   return res.json({});
-// });
+app.post('/signup', dbController.createUser, (req, res) => {
+  //   boolean val--has been signed up
+  console.log('aaaaaa');
+  console.log(res.locals);
+  return res.json(res.locals.loggedIn);
+});
+// insert dbController middleware find, validate, next
+app.post('/login', dbController.getUser, (req, res) => {
+  console.log('im in the login');
+  //   send back the username  to front end
+  return res.json({});
+});
 
 // // this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html
 // app.get('*', (req, res) => {

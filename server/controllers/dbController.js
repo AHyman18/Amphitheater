@@ -3,6 +3,7 @@ const pool = require('../database/psqlDB.js');
 
 // Creates user from username and password form on /signup route. Encrypts password via Bcrypt and stores in database.
 const createUser = (req, res) => {
+  console.log('Im in createuser');
   const { username, password } = req.body;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
@@ -40,8 +41,8 @@ const getUser = (req, res) => {
       if (!user.rows.length) return res.json({ username: null });
       const hash = user.rows[0].password;
       bcrypt.compare(password, hash, (err, result) => {
-        if (result) return res.json({ username });
-        res.status(400).send('Error bcrypting', err);
+        if (err) return res.status(400).send('Error bcrypting', err);
+        return res.json({ username });
       });
     })
     .catch(err => res.status(400).send('Could not get user', err));
