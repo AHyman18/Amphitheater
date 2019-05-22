@@ -62,15 +62,10 @@ function AppRouter() {
           </ul>
         </nav>
         <Route path="/" exact component={landingPage} />
-        {/* <Route path="/login/" component={Login} />
+        <Route path="/login/" component={Login} />
         <Route path="/signup/" component={Signup} />
-<<<<<<< HEAD
         <Route path="/homepage/" component={HomePage} />
       </LinkDivStyle>
-=======
-        <Route path="/homepage/" component={HomePage} /> */}
-      </LinkDiv>
->>>>>>> dev
     </Router>
   );
 }
