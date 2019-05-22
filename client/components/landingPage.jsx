@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WelcomePage = () => {
+const landingPage = () => {
   return (
     <div>
       <h2>Welcome to Amphitheater.</h2>
@@ -12,4 +12,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage;
+export default landingPage;
