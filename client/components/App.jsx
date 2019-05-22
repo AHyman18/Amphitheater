@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Login from './Login';
-import WelcomePage from './WelcomePage';
-import Signup from './Signup';
+import Login from './landingPageComponents/Login';
+import WelcomePage from './landingPage';
+import Signup from './landingPageComponents/Signup';
 import HomePage from './Homepage';
 
 const LinkDiv = styled.div`

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Navbar from './homepage_Compenents/Navbar';
-import ChatWindow from './homepage_Compenents/ChatWindow';
-import LiveStream from './homepage_Compenents/LiveStream';
-import MessageInput from './homepage_Compenents/Msginput';
-import Msginput from './homepage_Compenents/Msginput';
+import Navbar from './Navbar';
+import ChatWindow from './homepageComponents/ChatWindow';
+import LiveStream from './homepageComponents/LiveStream';
+import MessageInput from './homepageComponents/Messages';
+import Msginput from './homepageComponents/Msginput';
 
 const Homepage = styled.div`
   display: grid;
