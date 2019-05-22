@@ -37,7 +37,7 @@ function init() {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(showLocalStream)
-      .catch(err => console.error('Cannot get user media', err));
+      .catch(err => console.error('getUserMedia error', err));
   } else alert('Browser does not support getUserMediaAPI');
 }
 // helperFuncs
