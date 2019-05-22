@@ -1,6 +1,2 @@
 #node modules
 node_modules/
-#eslint shell 
-eslint.sh
-#Webpack build.js
-build.js
