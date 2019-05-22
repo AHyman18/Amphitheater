@@ -18,6 +18,7 @@ export default function Signup() {
     if (validated === false) return <Redirect to="/" />;
   };
   function submitCredentials(e) {
+    console.log('EEEEE', e);
     e.preventDefault();
     const data = {
       username,
