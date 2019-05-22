@@ -32,7 +32,7 @@ app.post('/login', dbController.getUser);
 // });
 ws.on('connection', function(ws) {
   console.log('connect wss');
-  ws.on('messa ge', function(message) {
+  ws.on('message', function(message) {
     // Broadcast any received message to all clients
     console.log('received: %s', message);
     ws.broadcast(message);
