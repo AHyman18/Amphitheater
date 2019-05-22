@@ -10,6 +10,7 @@ let localStream;
 const peerConnectionConfigs = {
   server: null,
 };
+
 // on page ready:
 function init() {
   console.log('init');
@@ -23,23 +24,23 @@ function init() {
     video: true,
     audio: true,
   };
+
+  function showLocalStream(stream) {
+    // Display stream to the DOM
+    const localVideo = document.querySelector('#localVideo');
+    localVideo.srcObject = stream;
+    // Store local stream globally
+    localStream = stream;
+  }
+
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then(getUserMediaSuccessFunc)
-      .catch('cant get user media');
-  } else {
-    alert('Browser does not support getUserMediaAPI');
-  }
+      .getUserMedia(streamConstraints)
+      .then(showLocalStream)
+      .catch(err => console.error('getUserMedia error', err));
+  } else alert('Browser does not support getUserMediaAPI');
 }
 // helperFuncs
-function getUserMediaSuccessFunc(stream) {
-  console.log('getUserMediaSuccessFunc');
-  let localVideo = document.querySelector('#localVideo');
-  console.log(localVideo);
-  localStream = stream;
-  localVideo.srcObject = stream;
-}
 function gotRemoteStreamFunc(event) {
   console.log('got remote stream');
   let remoteVideo = document.querySelector('#remoteVideo');
