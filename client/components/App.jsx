@@ -6,7 +6,7 @@ import WelcomePage from './WelcomePage';
 import Signup from './Signup';
 import HomePage from './Homepage';
 
-const LinkDiv = styled.div`
+const LinkDivStyle = styled.div`
   display: flex;
   margin: 0;
   body{
@@ -44,7 +44,7 @@ const LinkDiv = styled.div`
 function AppRouter() {
   return (
     <Router>
-      <LinkDiv>
+      <LinkDivStyle>
         <nav>
           <ul>
             <li>
@@ -65,7 +65,7 @@ function AppRouter() {
         <Route path="/login/" component={Login} />
         <Route path="/signup/" component={Signup} />
         <Route path="/homepage/" component={HomePage} />
-      </LinkDiv>
+      </LinkDivStyle>
     </Router>
   );
 }
