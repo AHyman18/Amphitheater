@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
   console.log('serving index html');
   return res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+app.get('/styles.css', (req, res) => {
+  console.log('serving index html');
+  return res.sendFile(path.join(__dirname, '../public/styles.css'));
+});
 app.get('/clientRTC.js', (req, res) => {
   console.log('serving client rtc');
   return res.sendFile(path.join(__dirname, '../client/clientRTC.js'));

@@ -1,15 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+import LandingContent from './landingPageComponents/landingContent';
+import Navbar from './Navbar';
 
-const WelcomePage = () => {
+const StyledLand = styled.div`
+  height: 100%;
+  width:100%
+  display: grid;
+  grid-template-areas: '
+n n n n 
+l l l l
+';
+`;
+
+const LandingPage = () => {
   return (
-    <div>
-      <h2>Welcome to Amphitheater.</h2>
-      <p>
-        The app is designed to get fitness instructors and their trainees
-        together in one space. Please login.
-      </p>
-    </div>
+    <StyledLand>
+      <Navbar />
+
+      <LandingContent />
+    </StyledLand>
   );
 };
 
-export default WelcomePage;
+export default LandingPage;
