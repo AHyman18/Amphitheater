@@ -17,7 +17,6 @@ const LandingPage = () => {
   return (
     <StyledLand>
       <Navbar />
-
       <LandingContent />
     </StyledLand>
   );
