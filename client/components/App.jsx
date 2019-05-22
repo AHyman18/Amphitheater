@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Login from './Login';
-import WelcomePage from './WelcomePage';
-import Signup from './Signup';
-import HomePage from './Homepage';
+// import Login from './landingPageComponents/Login';
+import landingPage from './landingPage';
+// import Signup from './landingPageComponents/Signup';
+// import HomePage from './Homepage';
 
 const LinkDiv = styled.div`
   display: flex;
@@ -61,10 +61,10 @@ function AppRouter() {
             </li>
           </ul>
         </nav>
-        <Route path="/" exact component={WelcomePage} />
-        <Route path="/login/" component={Login} />
+        <Route path="/" exact component={landingPage} />
+        {/* <Route path="/login/" component={Login} />
         <Route path="/signup/" component={Signup} />
-        <Route path="/homepage/" component={HomePage} />
+        <Route path="/homepage/" component={HomePage} /> */}
       </LinkDiv>
     </Router>
   );
