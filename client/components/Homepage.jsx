@@ -41,7 +41,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: ['friend', 'you'],
+      id: ['localVideo', 'remoteVideo'],
       width: ['250', '200'],
       content: '',
       fin: '',

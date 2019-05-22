@@ -15,13 +15,15 @@ class LiveStream extends React.Component {
 
   render() {
     return (
-      <section id={this.props.id}>
+      <section>
         <video
+          id={this.props.id}
           ref={this.videoTag}
           width={this.props.width}
           height={this.props.height}
           autoPlay
           title={this.props.title}
+          src={''}
         />
       </section>
     );
