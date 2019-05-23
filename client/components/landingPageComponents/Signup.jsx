@@ -7,11 +7,11 @@ export default function Signup() {
 
   const [validated, setValidated] = useState(null);
 
-  useEffect(() => {
-    console.log('checkcheck');
-    if (validated) return <Redirect to="/homepage/" />;
-    if (validated === false) return <Redirect to="/" />;
-  });
+  // useEffect(() => {
+  //   console.log('checkcheck');
+  //   if (validated) return <Redirect to="/homepage/" />;
+  //   if (validated === false) return <Redirect to="/" />;
+  // });
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -32,7 +32,7 @@ export default function Signup() {
       username,
       password,
     };
-    fetch('http://localhost:3000/signup', {
+    fetch(`https://${window.location.hostname}:3000/signup`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

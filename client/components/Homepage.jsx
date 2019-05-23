@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import LiveStream from './homepageComponents/LiveStream';
 // import MessageInput from './homepageComponents/Messages';
 // import Msginput from './homepageComponents/Msginput';
-import init from '../clientRTC';
+// import wrapper from '../../public/clientRTC';
+// import start from '../clientRTC';
 
 const ChatWindowStyled = styled.section`
   display: flex;
@@ -43,7 +44,9 @@ function HomePage(props) {
   };
 
   const fetchReq = event => {
-    init();
+    // wrapper();
+    // init();
+    // start(true);
   };
 
   return (
@@ -52,7 +55,7 @@ function HomePage(props) {
         autoPlay
         style={{ border: '1px solid black' }}
         height="100"
-        width="200"
+        width="2la  00"
         id="localVideo"
       />
       <video
