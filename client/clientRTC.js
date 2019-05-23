@@ -12,7 +12,7 @@ const peerConnectionConfig = {
   ],
 };
 
-function init() {
+export function init() {
   uuid = createUUID();
 
   // console.log(uuid);
@@ -44,7 +44,7 @@ function getUserMediaSuccess(stream) {
   localVideo.srcObject = stream;
 }
 
-function start(isCaller) {
+export function start(isCaller) {
   // console.log('inside start');
   // console.log('isCaller, ', isCaller);
   peerConnection = new RTCPeerConnection(peerConnectionConfig);
@@ -147,4 +147,4 @@ function createUUID() {
   );
 }
 
-export default init;
+// export default { init, start };
