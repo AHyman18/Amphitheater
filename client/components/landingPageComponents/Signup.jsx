@@ -7,6 +7,7 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(null);
 
+<<<<<<< HEAD
   // Styling
   const title = {
     color: 'black',
@@ -48,6 +49,13 @@ export default function Signup() {
     height: '1.7em',
     borderRadius: '8px',
   };
+=======
+  // useEffect(() => {
+  //   console.log('checkcheck');
+  //   if (validated) return <Redirect to="/homepage/" />;
+  //   if (validated === false) return <Redirect to="/" />;
+  // });
+>>>>>>> dev
 
   const submitStyle = {
     color: 'black',
@@ -80,7 +88,7 @@ export default function Signup() {
       username,
       password,
     };
-    fetch('http://localhost:3000/signup', {
+    fetch(`https://${window.location.hostname}:3000/signup`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

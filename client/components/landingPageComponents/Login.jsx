@@ -90,7 +90,7 @@ export default function Login() {
     };
     // On submit of the form, send a POST request with the data to the database/server.
 
-    fetch('http://localhost:3000/login', {
+    fetch(`https://${window.location.hostname}:3000/login`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

@@ -1,12 +1,22 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const https = require('https');
 const WebSocket = require('ws');
 const WebSocketServer = require('ws').Server;
+
 const bodyParser = require('body-parser');
+
+const serverConfig = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
+
 const dbController = require('./controllers/dbController.js');
 const app = express();
-const ws = new WebSocketServer({ port: 3009 });
+const httpsServer = https.createServer(serverConfig, app);
+const wss = new WebSocketServer({ server: httpsServer });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/build', express.static(path.join(__dirname, '../build/')));
@@ -20,15 +30,15 @@ app.get('/styles.css', (req, res) => {
   console.log('serving styles css');
   return res.sendFile(path.join(__dirname, '../public/styles.css'));
 });
-app.get(
-  'https://fonts.googleapis.com/css?family=Montaga&display=swap',
-  (req, res) => {
-    console.log('serving styles font');
-    return res.send(
-      'https://fonts.googleapis.com/css?family=Montaga&display=swap',
-    );
-  },
-);
+// app.get(
+//   'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+//   (req, res) => {
+//     console.log('serving styles font');
+//     return res.send(
+//       'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+//     );
+//   },
+// );
 
 app.get('/clientRTC.js', (req, res) => {
   console.log('serving client rtc');
@@ -49,24 +59,20 @@ app.post('/login', dbController.getUser, (req, res) => {
   return res.json({});
 });
 
-// // this was added to make sure the all routes in the devserver are not poxyied into other routes in the  express server. Every get request is served the index.html
-// app.get('*', (req, res) => {
-//   return res.sendFile(path.join(__dirname, '../public/index.html'));
-// });
-ws.on('connection', function(ws) {
-  console.log('connect wss');
+wss.on('connection', function(ws) {
   ws.on('message', function(message) {
     // Broadcast any received message to all clients
-    console.log('received: %s', message);
-    ws.broadcast(message);
+    // console.log('received: %s', message);
+    wss.broadcast(message);
   });
 });
-ws.broadcast = function(data) {
+wss.broadcast = function(data) {
   this.clients.forEach(function(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(data);
     }
   });
 };
-app.listen(3000);
-module.exports = app;
+
+httpsServer.listen(3000);
+module.exports = httpsServer;

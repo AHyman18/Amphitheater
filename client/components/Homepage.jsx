@@ -22,7 +22,6 @@ const MessageInputStyle = styled.div`
 function HomePage(props) {
   const [id, setId] = useState(['localVideo', 'remoteVideo']);
   const [width, setWidth] = useState(['250', '200']);
-  // const [content, setContent] = useState('');
   const [fin, setFin] = useState('');
   const [mssgList, setMssgList] = useState([]);
 
