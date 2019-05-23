@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-// import Homepage from './Homepage';
 
-export default function Login() {
-  const [name, setName] = useState('');
+export default function Signup() {
+  const [username, setName] = useState('');
   const [password, setPassword] = useState('');
-  // first element of arr = the initial value of the state, [1] = update of state
+
   const [validated, setValidated] = useState(null);
+
+  // useEffect(() => {
+  //   console.log('checkcheck');
+  //   if (validated) return <Redirect to="/homepage/" />;
+  //   if (validated === false) return <Redirect to="/" />;
+  // });
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -17,19 +22,17 @@ export default function Login() {
 
   const handleRedirect = () => {
     if (validated) return <Redirect to="/homepage/" />;
-    if (validated === false) return <Redirect to="/signup" />;
+    if (validated === false) return <Redirect to="/" />;
   };
 
-  function checkUser(e) {
+  function submitCredentials(e) {
+    console.log('EEEEE', e.event);
     e.preventDefault();
-
     const data = {
-      name,
+      username,
       password,
     };
-    // On submit of the form, send a POST request with the data to the database/server.
-
-    fetch('http://localhost:3000/login', {
+    fetch('https://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -38,7 +41,7 @@ export default function Login() {
     })
       .then(res => res.json())
       .then(validatedStatus => {
-        console.log(validatedStatus);
+        console.log(' this is the response', validatedStatus);
         if (validatedStatus) {
           setValidated(true);
         } else {
@@ -50,8 +53,8 @@ export default function Login() {
 
   return (
     <div>
-      <h2>Please enter your username and password below</h2>
-      <form onSubmit={checkUser}>
+      <h2>Welcome new user, please enter your username and password below</h2>
+      <form onSubmit={submitCredentials}>
         <input
           type="text"
           name="username"

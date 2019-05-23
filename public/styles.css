@@ -1,0 +1,17 @@
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Montaga', serif;
+}
+.App {
+  background-image: url('https://www.healthline.com/hlcmsresource/images/5322-asian_female_mediating_yoga-1200x628-FACEBOOK.jpg');
+  opacity: 0.8;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+#root {
+  height: 100%;
+}

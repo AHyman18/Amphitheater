@@ -1,73 +1,46 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import styled from 'styled-components';
-import Login from './Login';
-import WelcomePage from './WelcomePage';
-import Signup from './Signup';
-import HomePage from './Homepage';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons';
 
-const LinkDiv = styled.div`
-  display: flex;
-  margin: 0;
-  body{
-    text
-  }
-  ul {
-    text-decoration: none;
-    background-color: #fb406f;
-  }
-  a {
-    color: black;
-    text-decoration: 'none';
-  }
-  li > a {
-    text-decoration: none;
-  }
+import LandingPage from './landingPage';
+import Navbar from './Navbar';
+import Homepage from './Homepage';
+import Login from './landingPageComponents/Login';
+import Signup from './landingPageComponents/Signup';
+import AboutUs from './landingPageComponents/AboutUs';
+import ArrowComponent from './landingPageComponents/arrowComponent';
+import ProjectComponent from './landingPageComponents/projectComponent';
 
-  li {
-    text-decoration: none;
-    color: white;
-    display: block;
-    transition: 0.3s background-color;
-  }
+library.add(faStroopwafel);
 
-  li :hover {
-    background-color: white;
-  }
+const appHistory = createBrowserHistory();
 
-  li.active {
-    background-color: #005f5f;
-    color: #444;
-    cursor: default;
-  }
+const AppDiv = styled.div`
+  height: 100%;
+  width: 100%;
 `;
-function AppRouter() {
+function App() {
   return (
-    <Router>
-      <LinkDiv>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Welcome</Link>
-            </li>
-            <li>
-              <Link to="/login/">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup/">Signup</Link>
-            </li>
-            <li>
-              <Link to="/homepage/">homepage</Link>
-            </li>
-          </ul>
-        </nav>
-        <Route path="/" exact component={WelcomePage} />
-        <Route path="/login/" component={Login} />
-        <Route path="/signup/" component={Signup} />
-        <Route path="/homepage/" component={HomePage} />
-      </LinkDiv>
-    </Router>
+    <AppDiv className="App">
+      <BrowserRouter history={appHistory}>
+        <Navbar />
+        <ArrowComponent />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/home" component={LandingPage} />
+          <Route exact path="/aboutUs" component={AboutUs} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/project" component={ProjectComponent} />
+          <Route path="/homepage" component={Homepage} />
+        </Switch>
+      </BrowserRouter>
+    </AppDiv>
   );
 }
 
-export default AppRouter;
+export default App;

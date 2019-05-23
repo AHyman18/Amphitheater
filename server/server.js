@@ -7,13 +7,12 @@ const WebSocketServer = require('ws').Server;
 
 const bodyParser = require('body-parser');
 
-const db = require('./database/database');
-
 const serverConfig = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
 };
 
+const dbController = require('./controllers/dbController.js');
 const app = express();
 const httpsServer = https.createServer(serverConfig, app);
 const wss = new WebSocketServer({ server: httpsServer });
@@ -27,19 +26,34 @@ app.get('/', (req, res) => {
   console.log('serving index html');
   return res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+app.get('/styles.css', (req, res) => {
+  console.log('serving styles css');
+  return res.sendFile(path.join(__dirname, '../public/styles.css'));
+});
+// app.get(
+//   'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+//   (req, res) => {
+//     console.log('serving styles font');
+//     return res.send(
+//       'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+//     );
+//   },
+// );
+
 app.get('/clientRTC.js', (req, res) => {
   console.log('serving client rtc');
   return res.sendFile(path.join(__dirname, '../client/clientRTC.js'));
 });
 // insert dbController middleware Create/hash/insert, next
-app.post('/signup', db.createUser, (req, res) => {
+
+app.post('/signup', dbController.createUser, (req, res) => {
   //   boolean val--has been signed up
   console.log('aaaaaa');
   console.log(res.locals);
   return res.json(res.locals.loggedIn);
 });
 // insert dbController middleware find, validate, next
-app.post('/login', db.getUser, (req, res) => {
+app.post('/login', dbController.getUser, (req, res) => {
   console.log('im in the login');
   //   send back the username  to front end
   return res.json({});
