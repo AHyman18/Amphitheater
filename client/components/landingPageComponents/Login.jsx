@@ -3,28 +3,61 @@ import styled from 'styled-components';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Homepage from '../Homepage';
-// import Video from '../../assets/SilhouetteJogger.mp4';
 
-// const videoStyle = {
-//   position: 'fixed',
-//   right: '0',
-//   bottom: '0',
-//   minWidth: '100%',
-//   minHheight: '100%',
-// };
+// Styling
+const title = {
+  color: 'black',
+  fontSize: '1.2em',
+  textAlign: 'center',
+};
 
-const BackgroundDivStyle = styled.div`
-display: flex,
-justify-content: center,
-  width: 100%,
-  height: 100%,
-  background-color: #f4f4f4
-`;
+const box = {
+  margin: 'auto',
+  alignItems: 'center',
+  height: '25em',
+  width: '30em',
+  border: '0.2em solid grey',
+  borderRadius: '8px',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignContent: 'center',
+  alignSelf: 'stretch',
+  fontWeight: '900',
+};
 
-const LoginDivStyle = styled.div`
-align-items: center,
-  background-color: #708090
-`;
+const forms = {
+  display: 'flex',
+  alignItems: 'center',
+  borderRadius: '8px',
+  width: '80px',
+  flexDirection: 'column',
+};
+
+const inputStyle = {
+  margin: '7px',
+  width: '15em',
+  display: 'flex',
+  justifyContent: 'center',
+  border: '1px solid grey',
+  backgroundColor: '#f4f4f4',
+  opacity: '0.6',
+  height: '1.7em',
+  borderRadius: '8px',
+};
+
+const submitStyle = {
+  color: 'black',
+  backgroundColor: 'lightpink',
+  border: '1px solid grey',
+  borderRadius: '8px',
+  padding: '0.5em',
+  width: '15em',
+  letterSpacing: '10px',
+  fontFamily: 'serif',
+  margin: '2em',
+  color: 'black',
+};
 
 export default function Login() {
   const [name, setName] = useState('');
@@ -77,31 +110,29 @@ export default function Login() {
   }
 
   return (
-    <BackgroundDivStyle>
-      {/* <div>
-        <video className={videoStyle} autoPlay muted loop id="myVideo">
-          <source src={Video} type={video / mp4} />
-        </video>
-      </div> */}
-      <LoginDivStyle>
-        <h2>Please enter your username and password below</h2>
-        <form onSubmit={checkUser}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={handleNameChange}
-          />
-          <input
-            type="text"
-            name="password"
-            placeholder="Password"
-            onChange={handlePasswordChange}
-          />
-          <input type="submit" />
-        </form>
-        {handleRedirect()}
-      </LoginDivStyle>
-    </BackgroundDivStyle>
+    <div style={box}>
+      <h4 style={title}>
+        <p>Welcome back.</p>
+        <p>Summer's almost here. Time to get fit.</p>
+      </h4>
+      <form style={forms} onSubmit={checkUser}>
+        username
+        <input
+          type="text"
+          style={inputStyle}
+          name="username"
+          onChange={handleNameChange}
+        />
+        password
+        <input
+          type="text"
+          style={inputStyle}
+          name="password"
+          onChange={handlePasswordChange}
+        />
+        <input style={submitStyle} type="submit" value="SUBMIT" />
+      </form>
+      {handleRedirect()}
+    </div>
   );
 }

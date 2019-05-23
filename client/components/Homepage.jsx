@@ -1,10 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import Navbar from './Navbar';
-// import ChatWindow from './homepageComponents/ChatWindow';
-import LiveStream from './homepageComponents/LiveStream';
-// import MessageInput from './homepageComponents/Messages';
-// import Msginput from './homepageComponents/Msginput';
 import init from '../clientRTC';
 
 const ChatWindowStyled = styled.section`
@@ -30,11 +25,6 @@ function HomePage(props) {
   // const [content, setContent] = useState('');
   const [fin, setFin] = useState('');
   const [mssgList, setMssgList] = useState([]);
-
-  // const handleInputChange = event => {
-  //   console.log('content', content);
-  //   setContent(event.target.value);
-  // };
 
   const handleMsgSubmit = event => {
     event.preventDefault();
