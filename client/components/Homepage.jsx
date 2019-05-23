@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import LiveStream from './homepageComponents/LiveStream';
 // import MessageInput from './homepageComponents/Messages';
 // import Msginput from './homepageComponents/Msginput';
-import { init, start } from '../clientRTC';
+import wrapper from '../clientRTC';
 // import start from '../clientRTC';
 
 const ChatWindowStyled = styled.section`
@@ -44,8 +44,9 @@ function HomePage(props) {
   };
 
   const fetchReq = event => {
-    init();
-    start(true);
+    wrapper();
+    // init();
+    // start(true);
   };
 
   return (
