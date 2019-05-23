@@ -9,7 +9,6 @@ const LandStyle = styled.div`
   flex-direction: column;
   align-items: center;
 
-  //   border: 1px solid red;
   padding: 5% 0;
   h3 {
     color: black;
@@ -19,9 +18,6 @@ const LandStyle = styled.div`
   img {
     padding-right: 20px;
   }
-  //   #arrows {
-  //     font-size: 30px;
-  //   }
 `;
 
 const LandingContent = () => {
