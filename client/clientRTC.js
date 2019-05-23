@@ -1,18 +1,19 @@
-let localVideo;
-let localStream;
-let remoteVideo;
-let peerConnection;
-let uuid;
-let serverConnection;
+// let localVideo;
+// let localStream;
+// let remoteVideo;
+// let peerConnection;
+// let uuid;
+// let serverConnection;
 
-const peerConnectionConfig = {
+export const peerConnectionConfig = {
   iceServers: [
     { urls: 'stun:stun.stunprotocol.org:3478' },
     { urls: 'stun:stun.l.google.com:19302' },
   ],
 };
 
-function init() {
+export function init() {
+  console.log('Inside init()');
   uuid = createUUID();
 
   // console.log(uuid);
@@ -38,21 +39,22 @@ function init() {
   }
 }
 
-function getUserMediaSuccess(stream) {
+export function getUserMediaSuccess(stream) {
   // console.log('inside getUserMediaSuccess');
   localStream = stream;
   localVideo.srcObject = stream;
 }
 
-function start(isCaller) {
-  // console.log('inside start');
+export function start(isCaller) {
+  console.log('inside start');
   // console.log('isCaller, ', isCaller);
   peerConnection = new RTCPeerConnection(peerConnectionConfig);
   peerConnection.onicecandidate = gotIceCandidate;
   peerConnection.ontrack = gotRemoteStream;
   peerConnection.addStream(localStream);
-
+  console.log('line 56');
   if (isCaller) {
+    console.log('line 58');
     // console.log('inside isCaller');
     peerConnection
       .createOffer()
@@ -61,7 +63,7 @@ function start(isCaller) {
   }
 }
 
-function gotMessageFromServer(message) {
+export function gotMessageFromServer(message) {
   // console.log('LINE 70 ', peerConnection);
   // console.log('inside gotMessageFromServer');
   if (!peerConnection) start(false);
@@ -93,14 +95,14 @@ function gotMessageFromServer(message) {
   }
 }
 
-function gotIceCandidate(event) {
+export function gotIceCandidate(event) {
   // console.log('inside gotIceCandidate');
   if (event.candidate != null) {
     serverConnection.send(JSON.stringify({ ice: event.candidate, uuid: uuid }));
   }
 }
 
-function createdDescription(description) {
+export function createdDescription(description) {
   // console.log('insdie got description');
 
   peerConnection
@@ -113,18 +115,18 @@ function createdDescription(description) {
     .catch(errorHandler);
 }
 
-function gotRemoteStream(event) {
+export function gotRemoteStream(event) {
   // console.log('got remote stream');
   remoteVideo.srcObject = event.streams[0];
 }
 
-function errorHandler(error) {
+export function errorHandler(error) {
   console.log(error);
 }
 
 // Taken from http://stackoverflow.com/a/105074/515584
 // Strictly speaking, it's not a real UUID, but it gets the job done here
-function createUUID() {
+export function createUUID() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
@@ -147,4 +149,5 @@ function createUUID() {
   );
 }
 
-// export default init;
+// export default wrapper;
+// export default { init, start };
