@@ -17,9 +17,19 @@ app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 app.get('/styles.css', (req, res) => {
-  console.log('serving index html');
+  console.log('serving styles css');
   return res.sendFile(path.join(__dirname, '../public/styles.css'));
 });
+app.get(
+  'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+  (req, res) => {
+    console.log('serving styles font');
+    return res.send(
+      'https://fonts.googleapis.com/css?family=Montaga&display=swap',
+    );
+  },
+);
+
 app.get('/clientRTC.js', (req, res) => {
   console.log('serving client rtc');
   return res.sendFile(path.join(__dirname, '../client/clientRTC.js'));
