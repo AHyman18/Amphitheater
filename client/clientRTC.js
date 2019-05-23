@@ -25,7 +25,7 @@ function init() {
   };
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices
-      .getUserMedia(constraints)
+      .getUserMedia(streamConstraints)
       .then(getUserMediaSuccessFunc)
       .catch('cant get user media');
   } else {
@@ -145,3 +145,5 @@ function createUUID() {
     s4()
   );
 }
+
+export default init;
