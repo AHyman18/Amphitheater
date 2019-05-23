@@ -13,6 +13,7 @@ const NavDiv = styled.div`
   height: 8%;
   display: flex;
   justify-content: space-around;
+  background-color: white;
   align-items: center;
   font-size: 14px;
 `;
@@ -22,6 +23,13 @@ const NavP = styled.p`
   font-size: 14px;
   font-weight: 700;
 `;
+const Arrow = styled.div`
+  flex: display;
+  font-size: 30px;
+  padding: 0 50%;
+  background-color: white;
+  padding: 0;
+`;
 
 const Navbar = () => {
   return (
@@ -29,6 +37,10 @@ const Navbar = () => {
       <div id="menu">
         <FontAwesomeIcon icon="bars" />
       </div>
+      <Arrow id="arrows">
+        <span id="left"> &#8592;</span>
+        <span id="right"> &#8594;</span>
+      </Arrow>
 
       <NavP>
         <Link to="/home" style={{ textDecoration: 'none', color: 'black' }}>

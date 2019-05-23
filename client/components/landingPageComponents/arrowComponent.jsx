@@ -6,6 +6,7 @@ const Arrow = styled.div`
   flex: display;
   font-size: 30px;
   padding: 0 50%;
+  background-color: white;
 `;
 
 const ArrowComponent = () => {

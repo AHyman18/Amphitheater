@@ -28,7 +28,6 @@ function App() {
     <AppDiv className="App">
       <BrowserRouter history={appHistory}>
         <Navbar />
-        <ArrowComponent />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={LandingPage} />

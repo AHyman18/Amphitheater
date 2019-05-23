@@ -7,9 +7,8 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(null);
 
-<<<<<<< HEAD
   // Styling
-  const title = {
+  const titleStyle = {
     color: 'black',
     fontSize: '1.2em',
     textAlign: 'center',
@@ -49,13 +48,6 @@ export default function Signup() {
     height: '1.7em',
     borderRadius: '8px',
   };
-=======
-  // useEffect(() => {
-  //   console.log('checkcheck');
-  //   if (validated) return <Redirect to="/homepage/" />;
-  //   if (validated === false) return <Redirect to="/" />;
-  // });
->>>>>>> dev
 
   const submitStyle = {
     color: 'black',
@@ -109,7 +101,7 @@ export default function Signup() {
 
   return (
     <div style={box}>
-      <h4 style={title}>
+      <h4 style={titleStyle}>
         <p>Welcome new user.</p>
         <p>
           Please enter a unique <em>username</em> and <em>password</em> below.

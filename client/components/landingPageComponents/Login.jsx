@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import Homepage from '../Homepage';
 
 // Styling
-const title = {
+const titleStyle = {
   color: 'black',
   fontSize: '1.2em',
   textAlign: 'center',
@@ -13,6 +13,7 @@ const title = {
 
 const box = {
   margin: 'auto',
+
   alignItems: 'center',
   height: '25em',
   width: '30em',
@@ -111,7 +112,7 @@ export default function Login() {
 
   return (
     <div style={box}>
-      <h4 style={title}>
+      <h4 style={titleStyle}>
         <p>Welcome back.</p>
         <p>Summer's almost here. Time to get fit.</p>
       </h4>
