@@ -146,3 +146,5 @@ function createUUID() {
     s4()
   );
 }
+
+export default init;
