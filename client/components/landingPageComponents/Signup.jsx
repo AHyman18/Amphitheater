@@ -7,18 +7,26 @@ export default function Signup() {
 
   const [validated, setValidated] = useState(null);
 
+  useEffect(() => {
+    console.log('checkcheck');
+    if (validated) return <Redirect to="/homepage/" />;
+    if (validated === false) return <Redirect to="/" />;
+  });
+
   function handleNameChange(event) {
     setName(event.target.value);
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
+
   const handleRedirect = () => {
     if (validated) return <Redirect to="/homepage/" />;
     if (validated === false) return <Redirect to="/" />;
   };
+
   function submitCredentials(e) {
-    console.log('EEEEE', e);
+    console.log('EEEEE', e.event);
     e.preventDefault();
     const data = {
       username,

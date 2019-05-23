@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Navbar from './Navbar';
-import ChatWindow from './homepageComponents/ChatWindow';
+// import Navbar from './Navbar';
+// import ChatWindow from './homepageComponents/ChatWindow';
 import LiveStream from './homepageComponents/LiveStream';
-import MessageInput from './homepageComponents/Messages';
-import Msginput from './homepageComponents/Msginput';
+// import MessageInput from './homepageComponents/Messages';
+// import Msginput from './homepageComponents/Msginput';
 
 const HomepageStyle = styled.div`
   display: grid;
@@ -86,7 +86,7 @@ function HomePage(props) {
 
   return (
     <HomepageStyle>
-      <Navbar />
+      {/* <Navbar /> */}
       <ChatWindowStyled>
         <ul>
           {mssgList.map((message, index) => {
@@ -104,7 +104,18 @@ function HomePage(props) {
           <input type="submit" />
         </form>
       </MessageInputStyle>
-      {/* {liveStream} */}
+      {/* {liveStream}
+      <section>
+        <video
+          id={id}
+          ref={videoTag}
+          width={this.props.width}
+          height={this.props.height}
+          autoPlay
+          title={this.props.title}
+          src={''}
+        />
+      </section> */}
     </HomepageStyle>
   );
 
