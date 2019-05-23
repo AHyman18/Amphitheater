@@ -8,6 +8,7 @@ import { faStroopwafel } from '@fortawesome/free-solid-svg-icons';
 
 import LandingPage from './landingPage';
 import Navbar from './Navbar';
+import Homepage from './Homepage';
 import Login from './landingPageComponents/Login';
 import Signup from './landingPageComponents/Signup';
 import AboutUs from './landingPageComponents/AboutUs';
@@ -35,7 +36,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/project" component={ProjectComponent} />
-          {/* <Route path="/homepage" component={Hompage} /> */}
+          <Route path="/homepage" component={Homepage} />
         </Switch>
       </BrowserRouter>
     </AppDiv>

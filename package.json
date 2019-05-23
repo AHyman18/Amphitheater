@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " node server/server.js ",
-    "build": "webpack ",
+    "start": " nodemon server/server.js ",
+    "build": "webpack",
     "dev": "webpack-dev-server "
   },
   "keywords": [
@@ -27,7 +27,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.4",
+    "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "styled-components": "^4.2.0",
     "url-loader": "^1.1.2",
     "uuid": "^3.3.2",
