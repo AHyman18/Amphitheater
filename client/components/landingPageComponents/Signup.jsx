@@ -32,7 +32,7 @@ export default function Signup() {
       username,
       password,
     };
-    fetch('https://localhost:3000/signup', {
+    fetch(`https://${window.location.hostname}:3000/signup`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
